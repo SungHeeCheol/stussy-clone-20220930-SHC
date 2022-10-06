@@ -25,8 +25,6 @@ registerButton.onclick = () => {
         },
         error: (request, status ,error) => {                 //실패시 실행될 메소드
             alert("회원가입 요청 실패");
-            // console.log(request.status);
-            // console.log(request.responseText);
             console.log(error.responseJSON.lastName);
         }
     }
@@ -39,13 +37,26 @@ registerButton.onclick = () => {
         data: JSON.stringify(user),         //전송할 데이터가 있으면
         dataType: "json",                   //json과 text 등을 사용할 수 있지만 json을 사용했을때
         success: (response) => {            //성공시 실행될 메소드
-            alert("회원가입 요청 성공");
         },
         error: (error) => {                 //실패시 실행될 메소드
-            alert("회원가입 요청 실패");
-            // console.log(request.status);
-            // console.log(request.responseText);
-            console.log(error.responseJSON);
+            console.log(error.responseJSON.data);
+            loadErrorMessage(error.responseJSON.data);
         }
     });
+}
+
+function loadErrorMessage(errors){
+    const errorList = document.querySelector(".errors"); 
+    const errorMsgs = document.querySelector(".error-msgs");
+    const errorsArray = Object.values(errors);
+
+    errorMsgs.innerHTML = "";
+
+    errorsArray.forEach(error => {
+        errorMsgs.innerHTML += `
+            <li>${error}</li>
+        `;
+    });
+
+    errorList.classList.remove("errors-invisible");
 }

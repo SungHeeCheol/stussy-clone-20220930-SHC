@@ -1,7 +1,9 @@
 package com.stussy.stussyclone20220903SHC.api;
 
+import com.stussy.stussyclone20220903SHC.dto.CMRespDto;
 import com.stussy.stussyclone20220903SHC.dto.RegisterReqDto;
 import com.stussy.stussyclone20220903SHC.dto.validation.ValidationSequence;
+import com.stussy.stussyclone20220903SHC.exception.CustomValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -24,20 +26,8 @@ public class AccountApi {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@Validated(ValidationSequence.class) @RequestBody RegisterReqDto registerReqDto, BindingResult bindingResult){
-//        System.out.println("회원가입 요청 데이터" + registerReqDto);
-        Map<String, String> errorMap = new HashMap<String, String>();
-        if(bindingResult.hasErrors()){
-            List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-            for(FieldError fieldError : fieldErrors){
-                System.out.println("필드명" + fieldError.getField());
-                System.out.println("에러 메시지" + fieldError.getDefaultMessage());
-                errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
-            }
 
-            return ResponseEntity.badRequest().body(errorMap);
-        }
-
-        return ResponseEntity.ok().body(null);
+        return ResponseEntity.created(null).body(new CMRespDto<>("회원가입 성공", registerReqDto));
     }
 
 }
