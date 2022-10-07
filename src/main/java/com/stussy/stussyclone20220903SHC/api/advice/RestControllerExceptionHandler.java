@@ -13,7 +13,6 @@ public class RestControllerExceptionHandler {
 
     @ExceptionHandler(CustomValidationException.class)
     public ResponseEntity<?> validationErrorException(CustomValidationException e){
-
         return ResponseEntity.badRequest().body(new CMRespDto<>(e.getMessage(), e.getErrorMap()));
     }
 }

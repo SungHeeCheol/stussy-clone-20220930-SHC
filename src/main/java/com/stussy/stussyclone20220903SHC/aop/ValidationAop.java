@@ -28,7 +28,6 @@ public class ValidationAop {
         BeanPropertyBindingResult bindingResult = null;
 
         for(Object arg : args){
-            System.out.println(arg);
             if(arg.getClass() == BeanPropertyBindingResult.class){
                 bindingResult = (BeanPropertyBindingResult) arg;
                 break;
@@ -40,8 +39,6 @@ public class ValidationAop {
 
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
             for(FieldError fieldError : fieldErrors){
-                System.out.println("필드명" + fieldError.getField());
-                System.out.println("에러 메시지" + fieldError.getDefaultMessage());
                 errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
             }
 

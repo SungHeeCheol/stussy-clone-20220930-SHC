@@ -1,5 +1,6 @@
 package com.stussy.stussyclone20220903SHC.api;
 
+import com.stussy.stussyclone20220903SHC.aop.annotation.LogAspect;
 import com.stussy.stussyclone20220903SHC.dto.CMRespDto;
 import com.stussy.stussyclone20220903SHC.dto.RegisterReqDto;
 import com.stussy.stussyclone20220903SHC.dto.validation.ValidationSequence;
@@ -24,9 +25,9 @@ import java.util.Map;
 @RestController
 public class AccountApi {
 
+    @LogAspect
     @PostMapping("/register")
     public ResponseEntity<?> register(@Validated(ValidationSequence.class) @RequestBody RegisterReqDto registerReqDto, BindingResult bindingResult){
-
         return ResponseEntity.created(null).body(new CMRespDto<>("회원가입 성공", registerReqDto));
     }
 
