@@ -17,10 +17,12 @@ import java.util.Map;
 @Component
 public class ValidationAop {
 
-    @Pointcut("execution(* com.stussy.stussyclone20220903SHC..*Api.*(..))")
-    private void executionPointCut(){}
+//    @Pointcut("execution(* com.stussy.stussyclone20220903SHC..*Api.*(..))")
+//    private void executionPointCut(){}
+    @Pointcut("@annotation(com.stussy.stussyclone20220903SHC.aop.annotation.ValidAspect)")
+    private  void annotationPointCut(){}
 
-    @Around("executionPointCut()")
+    @Around("annotationPointCut()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable{
 
         Object[] args = joinPoint.getArgs(); //getArgs()는 Object배열형식이다.
