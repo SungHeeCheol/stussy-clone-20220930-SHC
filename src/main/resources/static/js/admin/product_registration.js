@@ -58,7 +58,26 @@ class ProductMst{
     }
 }
 
+class CommonApi{
+    getCategoryList(){
+        let responseResult = null;
 
+        $.ajax({
+            async: false,
+            type: "get",
+            url: "/api/admin/product/category",
+            dataType: "json",
+            success: (response) => {
+                responseResult = response.data;
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+
+        return responseResult;
+    }
+}
 
 class RegisterApi{
     createProductRequest(productMst){
@@ -160,7 +179,10 @@ class RegisterEventService{
                 optionInfo, managementInfo, shippingInfo);
             
             const registerApi = new RegisterApi();
-            registerApi.createProductRequest(productMst.getObject());
+            if(registerApi.createProductRequest(productMst.getObject())){
+                alert("상품 등록 완료");
+                location.reload();
+            }
         }
     }
 }
@@ -182,11 +204,25 @@ class RegisterService{
 
     }
 
+    getCategoryList(){
+        const commonApi = new CommonApi();
+        const porductCategoryList = commonApi.getCategoryList(); //commonApi안에 있는 getCategoryList로 ajax로 들고온 데이터 호출
+        
+        const porductCategory = document.querySelector(".product-category");
+        porductCategory.innerHTML = '<option value="none">상품 종류</option>';
+        porductCategoryList.forEach(category => {
+            porductCategory.innerHTML += `
+                <option value="${category.id}">${category.name}</option>
+            `;
+        });
+    }
+
     setRegisterHeaderEvent(){
         new RegisterEventService();
     }
 }
 
 window.onload = () => {
+    RegisterService.getInstance().getCategoryList();
     RegisterService.getInstance().setRegisterHeaderEvent();
 }
