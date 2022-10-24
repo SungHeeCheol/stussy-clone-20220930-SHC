@@ -3,58 +3,34 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.stussy.stussyclone20220903SHC.repository.AccountRepository">
-    <resultMap id="role" type="com.stussy.stussyclone20220903SHC.domain.Role">
-        <result property="id" column="id"/>
-        <result property="name" column="role_name"/>
-        <result property="create_date" column="create_date"/>
-        <result property="update_date" column="update_date"/>
-    </resultMap>
+<mapper namespace="com.stussy.stussyclone20220903SHC.repository.ProductRepository">
 
-    <resultMap id="user" type="com.stussy.stussyclone20220903SHC.domain.User">
-        <result property="id" column="id"/>
-        <result property="email" column="email"/>
-        <result property="password" column="password"/>
-        <result property="name" column="name"/>
-        <result property="provider" column="provider"/>
-        <result property="role_id" column="role_id"/>
-        <result property="create_date" column="create_date"/>
-        <result property="update_date" column="update_date"/>
-        <collection property="role" resultMap="role"/>
-    </resultMap>
-
-    <select id="findUserByEmail" parameterType="String" resultMap="user">
+    <select id="getProductList" parameterType="hashmap" resultType="com.stussy.stussyclone20220903SHC.domain.CollectionsProduct">
         select
-            um.id,
-            um.email,
-            um.password,
-            um.name,
-            um.provider,
-            um.role_id,
-            rm.name as role_name,
-            um.create_date,
-            um.update_date
+            pm.id,
+            pm.pdt_name,
+            pm.pdt_price,
+            pim.save_name,
+            pm_cnt.product_total_count
         from
-            user_mst um
-            left outer join role_mst rm on(rm.id = um.role_id)
+            pdt_mst pm
+            left outer join pdt_image_mst pim on(pim.pdt_id = pm.id)
+            left outer join (   select count(*) product_total_count
+                                from pdt_mst
+                                where 1 = 1
+                                <if test='category != "all"'>
+                                    and category_id = (select id from pdt_category_mst where category_name = #{category})
+                                </if> ) pm_cnt on(1 = 1)
         where
-            um.email = #{email}
+            1 = 1
+            <if test='category != "all"'>
+                and pm.category_id = (select id from pdt_category_mst where category_name = #{category})
+            </if>
+        group by
+            pm.id
+        limit #{index}, 16
     </select>
 
-    <insert id="saveUser" parameterType="com.stussy.stussyclone20220903SHC.domain.User">
-        insert into
-            user_mst
-        values (
-            0,
-            #{email},
-            #{password},
-            #{name},
-            #{provider},
-            #{role_id},
-            now(),
-            now()
-        );
-    </insert>
 </mapper>
 
 
