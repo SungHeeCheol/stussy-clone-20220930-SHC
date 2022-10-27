@@ -3,6 +3,7 @@ package com.stussy.stussyclone20220903SHC.api.admin;
 import com.stussy.stussyclone20220903SHC.aop.annotation.LogAspect;
 import com.stussy.stussyclone20220903SHC.aop.annotation.ValidAspect;
 import com.stussy.stussyclone20220903SHC.dto.CMRespDto;
+import com.stussy.stussyclone20220903SHC.dto.admin.ProductImgReqDto;
 import com.stussy.stussyclone20220903SHC.dto.admin.ProductRegisterDtlReqDto;
 import com.stussy.stussyclone20220903SHC.dto.admin.ProductRegisterReqDto;
 import com.stussy.stussyclone20220903SHC.service.admin.ProductManagementService;
@@ -66,6 +67,16 @@ public class ProductAdminApi {
 
         productManagementService.checkDuplicatedColor(productRegisterDtlReqDto);
         productManagementService.registerDtl(productRegisterDtlReqDto);
+
+        return ResponseEntity.created(null)
+                .body(new CMRespDto<>("Register Successfully", true));
+    }
+
+    @LogAspect
+    @PostMapping("/product/img")
+    public ResponseEntity<?> registerImg(ProductImgReqDto productImgReqDto) throws Exception{
+
+        productManagementService.registerImg(productImgReqDto);
 
         return ResponseEntity.created(null)
                 .body(new CMRespDto<>("Register Successfully", true));
