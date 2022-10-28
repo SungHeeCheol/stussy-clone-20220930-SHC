@@ -20,7 +20,7 @@ public class CollectionsProduct {
                 .productId(id)
                 .productName(pdt_name)
                 .productPrice(pdt_price)
-                .mainImg(save_name)
+                .mainImg(save_name == null ? "noImg.png" : save_name)
                 .productTotalCount(product_total_count)
                 .build();
     }
