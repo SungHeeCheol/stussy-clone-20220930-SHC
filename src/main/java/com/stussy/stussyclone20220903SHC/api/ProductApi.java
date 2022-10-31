@@ -1,5 +1,6 @@
 package com.stussy.stussyclone20220903SHC.api;
 
+import com.stussy.stussyclone20220903SHC.aop.annotation.LogAspect;
 import com.stussy.stussyclone20220903SHC.dto.CMRespDto;
 import com.stussy.stussyclone20220903SHC.service.ProductService;
 import lombok.RequiredArgsConstructor;

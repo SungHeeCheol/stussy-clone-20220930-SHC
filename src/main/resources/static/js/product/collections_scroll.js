@@ -35,8 +35,13 @@ class CollectionsApi{
 }
 
 class PageScroll {
-    constructor() {
-        this.addScrollPageEvent();
+    static #instance = null;
+
+    static getInstance() {
+        if(this.#instance == null){
+            this.#instance = new PageScroll();
+        }
+        return this.#instance;
     }
     
     addScrollPageEvent() {
@@ -59,7 +64,6 @@ class PageScroll {
 
 }
 
-
 class CollectionsService {
     static #instance = null;
 
@@ -69,6 +73,8 @@ class CollectionsService {
         }
         return this.#instance;
     }
+    
+    pdtIdList = null;
 
     collectionsEntity = {
         page: 1,
@@ -76,6 +82,12 @@ class CollectionsService {
         maxPage: 0
     }
 
+    constructor(){
+        new PageScroll();
+        this.pdtIdList = new Array();
+    }
+        
+    
     loadCollections() {
         if(this.collectionsEntity.page == 1 || this.collectionsEntity.page < Number(this.collectionsEntity.maxPage) + 1) {
             const responseData = CollectionsApi.getInstance().getCollections(this.collectionsEntity.page);
@@ -97,6 +109,7 @@ class CollectionsService {
         const collectionProducts = document.querySelector(".collection-products");
 
         responseData.forEach(product => {
+            this.pdtIdList.push(product.productId)
             collectionProducts.innerHTML += `
                 <li class="collection-product">
                     <div class="product-img">
@@ -106,17 +119,28 @@ class CollectionsService {
                         ${product.productName}
                     </div>
                     <div class="product-price">
-                        ${product.productPrice}
+                        ${product.productPrice}원
                     </div>
                 </li>
             `;
+        });
+        
+        this.addProductListEvent(responseData);
+    }
+
+    addProductListEvent() {
+        const collectionProducts = document.querySelectorAll(".collection-product");
+
+        collectionProducts.forEach((product, index) => {
+            product.onclick = () => {
+                location.href = "/product/" + this.pdtIdList[index];
+            }
         });
     }
 
 }
 
-
 window.onload = () => {
     CollectionsService.getInstance().loadCollections();
-    new PageScroll();
+    PageScroll.getInstance().addScrollPageEvent();
 }

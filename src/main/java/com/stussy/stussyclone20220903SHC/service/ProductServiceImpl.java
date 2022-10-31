@@ -1,5 +1,6 @@
 package com.stussy.stussyclone20220903SHC.service;
 
+import com.stussy.stussyclone20220903SHC.aop.annotation.LogAspect;
 import com.stussy.stussyclone20220903SHC.domain.Product;
 import com.stussy.stussyclone20220903SHC.dto.CollectionListRespDto;
 import com.stussy.stussyclone20220903SHC.dto.ProductRespDto;
@@ -34,6 +35,7 @@ public class ProductServiceImpl implements ProductService{
         return prductList;
     }
 
+    @LogAspect
     @Override
     public ProductRespDto getProduct(int pdtId) throws Exception {
         Product product = productRepository.getProduct(pdtId);
@@ -62,6 +64,7 @@ public class ProductServiceImpl implements ProductService{
 
             pdtColors.get(dtl.getPdt_color()).add(pdtDtlIdAndSize);
         });
+        System.out.println(product.getPdt_imgs());
 
         product.getPdt_imgs().forEach(img -> {
             pdtImgs.add(img.getSave_name());
