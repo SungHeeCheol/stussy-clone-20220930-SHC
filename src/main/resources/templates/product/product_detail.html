@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/header.css">
+
     <link rel="stylesheet" href="/static/css/product.css">
     <title>Product</title>
 </head>
@@ -16,10 +18,10 @@
             <div class="header-container">
                 <div class="header-left-container">
                     <div class="site-logo">
-                        <img class="site-logo-img" src="/static/images/header/site_logo.png" alt="stussy">
+                        <img class="site-logo-img" src="/static/images/header/site_logo.PNG" alt="sttusy">
                     </div>
                     <div class="nav-menu-button">
-                        <a class="nav-menu-button-link" href="https://www.stussy.co.kr/collections/all">SHOP</a>
+                        <a class="nav-menu-button-link" href="">SHOP</a>
                     </div>
                 </div>
                 <div class="header-right-container">
@@ -29,7 +31,7 @@
                         <img class="country-button-img" src="/static/images/header/taegeukgi.png" alt="태극기">
                     </button>
                 </div>
-            </div>           
+            </div>
             <nav class="nav-invisible">
                 <div class="site-nav-mega">
                     <a class="site-nav-child-link" href="/collections/new-arrivals">NEW</a>
@@ -46,10 +48,10 @@
                     <a class="site-nav-child-link" href="/collections/all">ALL</a>
                 </div>
                 <div class="site-nav-mega">
-                    <a class="site-nav-child-link" href="https://www.stussy.co.kr/account/login">ACCOUNT</a>
-                    <a class="site-nav-child-link" href="https://www.stussy.co.kr/pages/customer-support">CONTACT</a>
-                    <a class="site-nav-child-link" href="https://www.stussy.co.kr/blogs/features">FEATURES</a>
-                    <a class="site-nav-child-link" href="https://www.stussy.co.kr/blogs/chapters">CHAPTERS</a>
+                    <a class="site-nav-child-link" href="/account/login">ACCOUNT</a>
+                    <a class="site-nav-child-link" href="/pages/customer-support">CONTACT</a>
+                    <a class="site-nav-child-link" href="/blogs/features">FEATURES</a>
+                    <a class="site-nav-child-link" href="/blogs/chapters">CHAPTERS</a>
                 </div>
             </nav>
             <script src="/static/js/header/header.js"></script>
@@ -59,69 +61,44 @@
                 <div class="product-images">
                 </div>
                 <div class="offers">
-                    <h1 class="product-title">OVERDYED STOCK LOGO CREW</h1>
-                    <div class="product-price">₩167,000</div>
+                    <h1 class="product-title"></h1>
+                    <div class="product-price"></div>
                     <div class="product-form">
-                        <form action="/order" method="get">
-                            <input type="hidden">
-                            <select class="product-colors">
-                                <option value="Black">Black</option>
-                                <option value="Black">Black</option>
-                                <option value="Black">Black</option>
-                                <option value="Black">Black</option>
-                            </select>
+                        <select class="product-colors">
+                        </select>
+                        <form action="/checkout" method="get">    
                             <div class="product-sizes">
-                                <input type="radio" id="product-size-SS" class="product-size" name="pdtSize">
-                                <label for="product-size-SS">SS</label>
-                                <input type="radio" id="product-size-S" class="product-size" name="pdtSize">
-                                <label for="product-size-S">S</label>
-                                <input type="radio" id="product-size-M" class="product-size" name="pdtSize">
-                                <label for="product-size-M">M</label>
-                                <input type="radio" id="product-size-L" class="product-size" name="pdtSize">
-                                <label for="product-size-L">L</label>
-                                <input type="radio" id="product-size-XL" class="product-size" name="pdtSize">
-                                <label for="product-size-XL">XL</label>
-                                <input type="radio" id="product-size-XXL" class="product-size" name="pdtSize">                            
-                                <label for="product-size-XXL" class="no-stock">XXL</label>
                             </div>
                             <button type="button" class="btn bag-button">ADD TO BAG</button>
-                            <button type="button" class="btn checkout-button">CHECKOUT</button>
+                            <button type="submit" class="btn checkout-button">CHECKOUT</button>
                         </form>
                     </div>
                     <div class="product-info">
-                        <pre class="info simple-info">Relaxed fit fleece crewneck.</pre>
-                        <pre class="info detail-info">
-PRODUCT DETAILS
-- Embroidered logo on left chest
-- Ribbed neck, cuffs and hem
-                        </pre>
-                        <pre class="info option-info">
-Male model is 6'1" wearing size Medium
-Female model is 5'5" wearing size Medium
-                        </pre>
-                        <pre class="info management-info">
-100% Garment Dyed Cotton Fleece
-Imported
-                        </pre>
-                        <pre class="info shipping-info">7만원 이상 구매시 무료배송</pre>
+                        <pre class="info simple-info"></pre>
+                        <pre class="info detail-info"></pre>
+                        <pre class="info option-info"></pre>
+                        <pre class="info management-info"></pre>
+                        <pre class="info shipping-info"></pre>
                     </div>
                 </div>
             </section>
             <section class="other-products">
                 <div class="other-product-img">
-                    <img src="/static/images/product/product1.png" alt="">
+                    <img src="/static/images/product/product1.png">
                 </div>
                 <div class="other-product-img">
-                    <img src="/static/images/product/product1.png" alt="">
+                    <img src="/static/images/product/product1.png">
                 </div>
                 <div class="other-product-img">
-                    <img src="/static/images/product/product1.png" alt="">
+                    <img src="/static/images/product/product1.png">
                 </div>
                 <div class="other-product-img">
-                    <img src="/static/images/product/product1.png" alt="">
+                    <img src="/static/images/product/product1.png">
                 </div>
             </section>
         </main>
+        <footer>
+        </footer>
     </div>
     <script src="/static/js/product/product_detail.js"></script>
 </body>
