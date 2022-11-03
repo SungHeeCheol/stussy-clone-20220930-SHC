@@ -59,10 +59,8 @@
                 <div class="account-container">
                     <section class="account-new">
                         <h2 class="account-subtitle">회원가입</h2>
-                        <p class="account-content">
-                            회원가입을 하시면, 주문 조회와 개인정보 관리 및 빠른 체크아웃 등 다양한 혜택을 누리실 수 있습니다.
-                        </p>
-                        <button class="btn account-button" type="button">신규가입</button>
+                        <p class="account-content">회원가입을 하시면, 주문 조회와 개인정보 관리 및 빠른 체크아웃 등 다양한 혜택을 누리실 수 있습니다.</p>
+                        <button type="button" class="btn account-button">신규가입</button>
                     </section>
                     <section class="account-current">
                         <form action="/account/login" method="post">
@@ -77,14 +75,17 @@
                             <th:block th:if="${error == 'passwordExpired'}">
                                 <div class="errors">
                                     <ul>
-                                        <li>비밀번호 인증 5회 초과</li>
+                                        <li>비밀번호 인증 5회 초과.</li>
                                     </ul>
                                 </div>
                             </th:block>
                             <input type="email" class="account-input" name="email" th:value="${email}" placeholder="이메일" required>
                             <input type="password" class="account-input" name="password" placeholder="비밀번호" required>
-                            <a class="find-password-link" href="#">비밀번호를 잊으셨나요?</a>
-                            <button class="btn account-button" type="submit">로그인</button>
+                            <a class="find-password-link" href="">비밀번호를 잊으셨나요?</a>
+                            <button type="submit" class="btn account-button">로그인</button>
+                            <button type="button" class="btn account-button" onclick="location.href='/oauth2/authorization/google'">구글 로그인</button>
+                            <button type="button" class="btn account-button" onclick="location.href='/oauth2/authorization/naver'">네이버 로그인</button>
+
                         </form>
                     </section>
                 </div>
