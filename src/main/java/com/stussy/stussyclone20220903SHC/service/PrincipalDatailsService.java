@@ -3,7 +3,6 @@ package com.stussy.stussyclone20220903SHC.service;
 import com.stussy.stussyclone20220903SHC.domain.User;
 import com.stussy.stussyclone20220903SHC.exception.CustominternalServerErrorException;
 import com.stussy.stussyclone20220903SHC.repository.AccountRepository;
-import com.stussy.stussyclone20220903SHC.security.PrincipalDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;

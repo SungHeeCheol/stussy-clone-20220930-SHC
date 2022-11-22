@@ -1,7 +1,6 @@
 package com.stussy.stussyclone20220903SHC.controller;
 
 import com.stussy.stussyclone20220903SHC.dto.CheckoutRespDto;
-import com.stussy.stussyclone20220903SHC.security.PrincipalDetails;
 import com.stussy.stussyclone20220903SHC.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -28,11 +27,10 @@ public class ProductController {
 
     @GetMapping("/checkout")
     public String loadPayment(Model model,
-                              @RequestParam int pdtDtlId,
-                              @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception{
+                              @RequestParam int pdtDtlId
+                              ) throws Exception{
         CheckoutRespDto checkoutRespDto = productService.getCheckoutProduct(pdtDtlId);
         model.addAttribute("data", checkoutRespDto);
-        model.addAttribute("user", principalDetails.getUser());
         return "product/product_order";
     }
 
